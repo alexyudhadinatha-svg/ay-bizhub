@@ -1,0 +1,472 @@
+<!--
+  ===================================================================
+  DEPLOYMENT GUIDE UNTUK VERCEL (Siap Deploy):
+  ===================================================================
+  1. Buat repository baru di GitHub (misal: "my-business-ecosystem").
+  2. Simpan file ini dengan nama `index.html` di dalam repository tersebut.
+  3. Buka https://vercel.com/ lalu login / register dengan akun GitHub Anda.
+  4. Klik "Add New..." -> "Project".
+  5. Import repository "my-business-ecosystem".
+  6. Pilih "Framework Preset" -> "Other" (karena ini murni HTML/Tailwind CDN).
+  7. Klik "Deploy". Website Anda akan langsung online dalam 10 detik!
+  ===================================================================
+-->
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Yudhadinatha | Business Ecosystem Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        tekno: { glow: '#00d2ff', accent: '#0084ff', dark: '#003b73' },
+                        gsu: { glow: '#ff7300', accent: '#e65100', dark: '#4a1a00' },
+                        ay: { glow: '#ffd700', accent: '#d4af37', dark: '#524000' },
+                        craftour: { glow: '#10b981', accent: '#059669', dark: '#023826' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080b11;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Premium Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(15, 21, 33, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.22);
+            transform: translateY(-5px) scale(1.015);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+        }
+
+        /* Dynamic Brand Glow Effects on Hover */
+        .glow-tekno:hover {
+            box-shadow: 0 0 40px -5px rgba(0, 210, 255, 0.3);
+            border-color: rgba(0, 210, 255, 0.5);
+        }
+
+        .glow-gsu:hover {
+            box-shadow: 0 0 40px -5px rgba(255, 115, 0, 0.3);
+            border-color: rgba(255, 115, 0, 0.5);
+        }
+
+        .glow-ay:hover {
+            box-shadow: 0 0 40px -5px rgba(255, 215, 0, 0.35);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+
+        .glow-craftour:hover {
+            box-shadow: 0 0 40px -5px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+
+        /* Ambient Lighting Background Blobs */
+        .ambient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.16;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatSlow 10s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+
+        @keyframes floatSlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.14; }
+            100% { transform: scale(1.2) translate(30px, -30px); opacity: 0.22; }
+        }
+
+        /* Shimmer text effect */
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #cbd5e1 25%, #ffffff 50%, #cbd5e1 75%, #ffffff 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: shimmer 6s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #080b11; }
+        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #374151; }
+    </style>
+</head>
+<body class="min-h-screen relative flex flex-col justify-between antialiased selection:bg-amber-400 selection:text-slate-950">
+
+    <!-- Ambient Glowing Backdrops -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="ambient-blob w-[380px] h-[380px] sm:w-[600px] sm:h-[600px] bg-cyan-500 top-[-100px] left-[-150px]"></div>
+        <div class="ambient-blob w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] bg-orange-600 top-[25%] right-[-120px]" style="animation-delay: -3s;"></div>
+        <div class="ambient-blob w-[380px] h-[380px] sm:w-[550px] sm:h-[550px] bg-yellow-400 bottom-[20%] left-[-100px]" style="animation-delay: -5s;"></div>
+        <div class="ambient-blob w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] bg-emerald-500 bottom-[-100px] right-[-80px]" style="animation-delay: -7s;"></div>
+    </div>
+
+    <!-- Main Outer Wrapper -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-grow flex flex-col justify-between">
+
+        <!-- HEADER / HERO SECTION -->
+        <header class="text-center mb-14 sm:mb-20">
+            <!-- Dynamic Main Brand Logo Header (Using the Exact Geometric AY Vector) -->
+            <div class="relative inline-block mb-6 group cursor-pointer" onclick="scrollToCards()">
+                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl p-0.5 bg-gradient-to-tr from-cyan-500 via-amber-400 to-emerald-500 shadow-2xl shadow-amber-500/10 mx-auto transition-transform duration-500 group-hover:scale-105">
+                    <div class="w-full h-full rounded-[22px] bg-slate-950 flex items-center justify-center p-4 border border-white/10 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-amber-500/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <!-- Recreated AY Geometric Vector Logo Icon -->
+                        <svg class="w-14 h-14 text-white fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 60,10 L 105,10 L 45,150 L 0,150 Z" />
+                            <path d="M 85,35 L 122,35 L 122,105 L 85,105 Z" />
+                            <path d="M 160,35 L 200,35 L 135,150 L 95,150 Z" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Status Badge -->
+                <div class="absolute -bottom-1 -right-1 bg-emerald-500 border-2 border-slate-950 w-5 h-5 rounded-full flex items-center justify-center" title="Active Business Units">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                </div>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white mb-4">
+                Alex Yudhadinatha
+            </h1>
+            <p class="text-amber-400/90 font-semibold text-sm sm:text-base tracking-wider uppercase mb-3">
+                Ecosystem Business Portfolio
+            </p>
+            <p class="text-slate-400 text-sm sm:text-base font-normal max-w-2xl mx-auto leading-relaxed mb-8">
+                Integrasi lini bisnis terpilih melingkupi Software & Digital Solutions, Tactical Apparel, Live Entertainment, dan Curated Travel Experience.
+            </p>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex items-center justify-center gap-3.5 flex-wrap">
+                <button onclick="openModal('General Discussion', 'Halo Alex, saya ingin berdiskusi mengenai kerjasama bisnis.')" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-all border border-white/10 hover:border-white/30 backdrop-blur-md shadow-lg">
+                    <i data-lucide="mail" class="w-4 h-4 text-amber-400"></i> Contact Directly
+                </button>
+                <a href="https://wa.me/?text=Halo%20Alex,%20saya%20tertarik%20berdiskusi%20mengenai%20bisnis%20Anda." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 font-medium text-sm transition-all border border-emerald-500/30 shadow-lg">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> WhatsApp Direct
+                </a>
+            </div>
+        </header>
+
+        <!-- BUSINESS UNITS GRID SECTION -->
+        <main id="businessCards" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
+
+            <!-- CARD 1: TEKNO SOLUSI -->
+            <div class="glass-card glow-tekno rounded-3xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-15 transition-opacity pointer-events-none">
+                    <i data-lucide="code-2" class="w-32 h-32 text-cyan-400"></i>
+                </div>
+                <div>
+                    <!-- Header Badging & Logo -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="h-12 px-4 rounded-xl bg-slate-950/90 border border-slate-800 flex items-center justify-center">
+                            <!-- SVG Tekno Solusi Stylized T Logo -->
+                            <div class="flex items-center gap-2.5 text-cyan-400 font-bold tracking-tight text-lg">
+                                <svg class="w-7 h-7 text-cyan-400 fill-current" viewBox="0 0 24 24">
+                                    <path d="M4 4h16v4H14v12h-4V8H4V4z"/>
+                                </svg>
+                                <span class="text-white font-extrabold tracking-tight">tekno<span class="text-cyan-400">solusi</span></span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                            Digital & Enterprise
+                        </span>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+                        Tekno Solusi
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Pengembangan perangkat lunak enterprise, custom sistem aplikasi web & mobile, serta solusi transformasi digital terpadu untuk efisiensi bisnis.
+                    </p>
+                </div>
+
+                <!-- Footer Action -->
+                <div class="pt-5 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                    <a href="https://teknosolusi.com" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-sm transition-all shadow-lg shadow-cyan-950/50">
+                        <span>Kunjungi teknosolusi.com</span>
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                    <button onclick="openModal('Tekno Solusi', 'Halo, saya tertarik dengan layanan pengembangan software/digital dari Tekno Solusi.')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors" title="Kirim Pesan">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CARD 2: GARUDA SAKTI UDAYA (GSU) -->
+            <div class="glass-card glow-gsu rounded-3xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-15 transition-opacity pointer-events-none">
+                    <i data-lucide="shield" class="w-32 h-32 text-orange-500"></i>
+                </div>
+                <div>
+                    <!-- Header Badging & Logo -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="h-12 px-4 rounded-xl bg-slate-950/90 border border-slate-800 flex items-center justify-center">
+                            <!-- SVG Garuda Eagle Icon -->
+                            <div class="flex items-center gap-2.5 text-orange-500 font-bold tracking-wider text-lg">
+                                <svg class="w-7 h-7 fill-current text-orange-500" viewBox="0 0 24 24">
+                                    <path d="M12 2L4 7v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-5.45 8-12V7l-8-5zm0 4a3 3 0 0 1 3 3c0 1.66-1.34 3-3 3s-3-1.34-3-3a3 3 0 0 1 3-3zm0 14.3c-2.8-1.07-5.3-4.25-5.9-7.3 1.8.8 3.8.8 5.9 0 2.1.8 4.1.8 5.9 0-.6 3.05-3.1 6.23-5.9 7.3z"/>
+                                </svg>
+                                <span class="text-white font-extrabold tracking-widest">GSU</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                            Tactical & Outdoor
+                        </span>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-orange-300 transition-colors">
+                        Garuda Sakti Udaya
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Pengadaan retail & project pakaian taktikal, seragam lapangan, perlengkapan outdoor, serta perlengkapan teknis berstandar kualitas tinggi.
+                    </p>
+                </div>
+
+                <!-- Footer Action -->
+                <div class="pt-5 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                    <a href="https://gsu.my.id" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-sm transition-all shadow-lg shadow-orange-950/50">
+                        <span>Kunjungi gsu.my.id</span>
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                    <button onclick="openModal('Garuda Sakti Udaya', 'Halo, saya mau menanyakan katalog atau pengadaan project dari GSU.')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors" title="Kirim Pesan">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CARD 3: AY ENTERTAINMENT (With exact white slanted geometric logo) -->
+            <div class="glass-card glow-ay rounded-3xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-15 transition-opacity pointer-events-none">
+                    <i data-lucide="disc" class="w-32 h-32 text-amber-400"></i>
+                </div>
+                <div>
+                    <!-- Header Badging & Logo -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="h-12 px-4 rounded-xl bg-slate-950/90 border border-slate-800 flex items-center justify-center">
+                            <div class="flex items-center gap-3">
+                                <!-- Recreated White Geometric AY Logo -->
+                                <svg class="w-7 h-7 text-white fill-current" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M 60,10 L 105,10 L 45,150 L 0,150 Z" />
+                                    <path d="M 85,35 L 122,35 L 122,105 L 85,105 Z" />
+                                    <path d="M 160,35 L 200,35 L 135,150 L 95,150 Z" />
+                                </svg>
+                                <span class="text-slate-200 font-extrabold tracking-wider text-xs sm:text-sm">ENTERTAINMENT</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                            DJ & Event Management
+                        </span>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors">
+                        AY Entertainment
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Layanan profesional penampil Live DJ, kurasi musik acara, produksi audio, serta tata kelola hiburan event yang dinamis & spektakuler.
+                    </p>
+                </div>
+
+                <!-- Footer Action -->
+                <div class="pt-5 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                    <button onclick="openModal('AY Entertainment', 'Halo, saya mau cek availability schedule & rate card DJ/Event booking AY Entertainment.')" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-amber-950/30">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                        <span>Book DJ & Event Performance</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CARD 4: CRAFTOUR -->
+            <div class="glass-card glow-craftour rounded-3xl p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-15 transition-opacity pointer-events-none">
+                    <i data-lucide="compass" class="w-32 h-32 text-emerald-400"></i>
+                </div>
+                <div>
+                    <!-- Header Badging & Logo -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="h-12 px-4 rounded-xl bg-slate-950/90 border border-slate-800 flex items-center justify-center">
+                            <!-- Elegant Craftour Style Typography -->
+                            <div class="text-emerald-400 font-serif font-bold text-xl tracking-tight flex items-baseline">
+                                <span class="text-white font-serif">craft</span><span class="italic text-amber-400 font-serif">o</span><span class="text-white font-serif">ur</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            Travel Experience
+                        </span>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">
+                        Craftour
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Perencanaan & kurasi perjalanan eksklusif, private trip, corporate outing, serta eksplorasi destinasi unik dengan impresi tak terlupakan.
+                    </p>
+                </div>
+
+                <!-- Footer Action -->
+                <div class="pt-5 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                    <a href="https://craftour.online" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-950/50">
+                        <span>Kunjungi craftour.online</span>
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                    <button onclick="openModal('Craftour', 'Halo, saya berminat membuat custom itinerary / trip package bersama Craftour.')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors" title="Kirim Pesan">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- INTERACTIVE CONTACT / INQUIRY MODAL -->
+        <div id="contactModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md hidden opacity-0 transition-all duration-300">
+            <div class="glass-card w-full max-w-lg rounded-3xl p-6 sm:p-8 relative border border-slate-700/60 shadow-2xl">
+                <!-- Close Button -->
+                <button onclick="closeModal()" class="absolute top-5 right-5 p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800/60 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+
+                <div class="mb-6">
+                    <span id="modalBadge" class="text-xs font-semibold px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-2 inline-block">Direct Inquiry</span>
+                    <h3 class="text-2xl font-bold text-white mb-1" id="modalTitle">Pesan Direct</h3>
+                    <p class="text-slate-400 text-sm">Isi detail di bawah ini, kami akan meneruskan pesan langsung ke WhatsApp/Email.</p>
+                </div>
+
+                <form id="inquiryForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <input type="hidden" id="targetBusiness" value="General">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Nama Anda</label>
+                        <input type="text" id="userName" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Kontak (Email / No. WA)</label>
+                        <input type="text" id="userContact" required placeholder="0812... / email@anda.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Pesan / Kebutuhan</label>
+                        <textarea id="userMessage" rows="3" required placeholder="Tuliskan pesan Anda..." class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors text-sm resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:brightness-110 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Kirim via WhatsApp Direct</span>
+                    </button>
+                </form>
+
+                <div id="modalSuccess" class="hidden text-center py-8">
+                    <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-500/30">
+                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Pesan Disiapkan!</h4>
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed">Membuka jendela WhatsApp untuk mengirim pesan Anda secara langsung...</p>
+                    <button onclick="closeModal()" class="px-6 py-2.5 rounded-xl bg-slate-800 text-white text-sm hover:bg-slate-700 transition-colors">Tutup</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="text-center border-t border-slate-800/80 pt-8 text-slate-500 text-xs sm:text-sm">
+            <p class="font-medium text-slate-400">&copy; 2026 Alex Yudhadinatha. All rights reserved.</p>
+            <p class="mt-2 text-slate-600">Tekno Solusi &bull; Garuda Sakti Udaya &bull; AY Entertainment &bull; Craftour</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Render Icons
+        lucide.createIcons();
+
+        function scrollToCards() {
+            document.getElementById('businessCards').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openModal(businessName, defaultText = '') {
+            const modal = document.getElementById('contactModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBadge = document.getElementById('modalBadge');
+            const targetBusiness = document.getElementById('targetBusiness');
+            const userMessage = document.getElementById('userMessage');
+            const form = document.getElementById('inquiryForm');
+            const successState = document.getElementById('modalSuccess');
+
+            modalTitle.innerText = `${businessName}`;
+            modalBadge.innerText = `Inquiry to ${businessName}`;
+            targetBusiness.value = businessName;
+            
+            if (defaultText) {
+                userMessage.value = defaultText;
+            }
+
+            form.classList.remove('hidden');
+            successState.classList.add('hidden');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const business = document.getElementById('targetBusiness').value;
+            const name = document.getElementById('userName').value;
+            const contact = document.getElementById('userContact').value;
+            const message = document.getElementById('userMessage').value;
+
+            // Form WhatsApp pre-filled text link
+            const waText = `Halo Alex,%0A%0ASaya *${encodeURIComponent(name)}* (${encodeURIComponent(contact)}).%0AInquiry untuk unit: *${encodeURIComponent(business)}*%0A%0A*Pesan:*%0A${encodeURIComponent(message)}`;
+            
+            // Redirect to WhatsApp
+            window.open(`https://wa.me/?text=${waText}`, '_blank');
+
+            document.getElementById('inquiryForm').classList.add('hidden');
+            document.getElementById('modalSuccess').classList.remove('hidden');
+            document.getElementById('inquiryForm').reset();
+        }
+
+        // Close modal on escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") closeModal();
+        });
+    </script>
+</body>
+</html>
